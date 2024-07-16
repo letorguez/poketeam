@@ -4,8 +4,7 @@ import coil3.annotation.ExperimentalCoilApi
 import coil3.compose.setSingletonImageLoaderFactory
 import coil3.request.crossfade
 import coil3.util.DebugLogger
-import es.leanmind.poketeam.ui.screens.detail.DetailScreen
-import es.leanmind.poketeam.ui.screens.home.HomeScreen
+import es.leanmind.poketeam.ui.screens.Navigation
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalCoilApi::class)
@@ -19,5 +18,5 @@ fun App() {
             .build()
     }
 
-    DetailScreen()
+    Navigation()
 }

@@ -1,5 +1,6 @@
 package es.leanmind.poketeam.ui.screens.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -21,7 +22,7 @@ import poketeam.composeapp.generated.resources.app_name
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-fun HomeScreen() {
+fun HomeScreen(onMovieClick: (Movie) -> Unit) {
     Screen {
         val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
         Scaffold(
@@ -41,7 +42,7 @@ fun HomeScreen() {
                 modifier = Modifier.padding(padding)
             ) {
                 items(movies, key = { it.id }) {
-                    MovieItem(movie = it)
+                    MovieItem(movie = it, onClick = { onMovieClick(it) })
                 }
             }
         }
@@ -49,8 +50,14 @@ fun HomeScreen() {
 }
 
 @Composable
-fun MovieItem(movie: Movie) {
-    Column {
+fun MovieItem(movie: Movie, onClick: () -> Unit) {
+    Column(
+        modifier = Modifier
+            .clickable { onClick() }
+            .fillMaxWidth()
+            .clip(MaterialTheme.shapes.medium)
+
+    ) {
         AsyncImage(
             model = movie.poster,
             contentDescription = movie.title,

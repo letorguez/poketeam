@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import es.leanmind.poketeam.Movie
 import es.leanmind.poketeam.movies
 import es.leanmind.poketeam.ui.screens.Screen
 import org.jetbrains.compose.resources.stringResource
@@ -22,18 +23,21 @@ import poketeam.composeapp.generated.resources.back
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen() {
-    val movie = movies[0]
+fun DetailScreen(movie: Movie, onBack: () -> Unit) {
     Screen {
         Scaffold(
             topBar = {
                 TopAppBar(
                     title = { Text(movie.title) },
                     navigationIcon = {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Default.ArrowBack,
-                            contentDescription = stringResource(Res.string.back)
-                        )
+                        IconButton(
+                            onClick = onBack
+                        ) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Default.ArrowBack,
+                                contentDescription = stringResource(Res.string.back)
+                            )
+                        }
                     }
                 )
             }
